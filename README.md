@@ -63,15 +63,13 @@ string message
 bool sucess
 ``` 
 ## Project documentation
-TODO
-<!-- The sequence diagram of the solution is presented bellow:
+The sequence diagram of the solution is presented bellow. Through this diagram it is possible to see how the information flow between the user, the client and the server, as well as the logic execution sequence. Firstly, the user send a point and a rotation angle (around x-axis) to the client. This prepare the SRV message and send the information forward to the server. This one make the mathematical operations to calculate the desired point B, which is send back to the client as a response and, finally, achieve the user.
 
-![banner](https://github.com/gabrielcalmon/apply_zyz_rotation/blob/master/resources/apply_zyz_rotarion_diag_sequencia.png?raw=true)
+![banner](resources/images/sequence-diagram.png)
 
+The use case is also presented. As it is a relatively simple project, the only existing case is to provide for the user the desired transform.
 
-
-The composed rotation matrix can be defined as bellow:
-![banner](https://github.com/gabrielcalmon/apply_zyz_rotation/blob/master/resources/zyz_rotation_matrix.png?raw=true) -->
+![banner](resources/images/use-case.png)
 
 ## Setup
 First, create your workspace
