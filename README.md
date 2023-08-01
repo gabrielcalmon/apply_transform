@@ -65,11 +65,15 @@ bool sucess
 ## Project documentation
 The sequence diagram of the solution is presented bellow. Through this diagram it is possible to see how the information flow between the user, the client and the server, as well as the logic execution sequence. Firstly, the user send a point and a rotation angle (around x-axis) to the client. This prepare the SRV message and send the information forward to the server. This one make the mathematical operations to calculate the desired point B, which is send back to the client as a response and, finally, achieve the user.
 
-![banner](resources/images/sequence-diagram.png)
+<div align="center">
+  <img src="resources/images/sequence-diagram.png" alt="sequence diagram">
+</div>
 
 The use case is also presented. As it is a relatively simple project, the only existing case is to provide for the user the desired transform.
 
-![banner](resources/images/use-case.png)
+<div align="center">
+  <img src="resources/images/use-case.png" alt="use case diagram">
+</div>
 
 ## Setup
 First, create your workspace
