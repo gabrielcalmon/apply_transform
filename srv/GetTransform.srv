@@ -1,6 +1,0 @@
-float64[3] point_a
-float64 theta
----
-float64[3] point_b
-string message
-bool sucess
