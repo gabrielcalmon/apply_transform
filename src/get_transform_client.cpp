@@ -13,10 +13,10 @@ int main(int argc, char **argv)
   rclcpp::init(argc, argv);
 
   if (argc < 5) {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "insufficient parameters\nusage: aPx aPy aPz theta");      
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "insufficient parameters\nusage: aPx aPy aPz theta");      
     return 1;
   } else if (argc > 5){
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "too many parameters were passed\nusage: aPx aPy aPz theta");      
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "too many parameters were passed\nusage: aPx aPy aPz theta");      
     return 1;
   }
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv)
     request->theta = std::stod(argv[4]);
   } catch (const std::invalid_argument& e) {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error: Invalid argument. The string does not represent a valid number");
+    return 2;
   }                                                          
 
   while (!client->wait_for_service(1s)) {
