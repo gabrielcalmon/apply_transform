@@ -7,6 +7,7 @@ A general transformation between two points can be defined as follow:
 $$^{B}P=^{B}_AT^{A}P$$
 
 Which is equivalent to:
+
 $$
 \begin{bmatrix}
 ^{B}P_x\\ 
