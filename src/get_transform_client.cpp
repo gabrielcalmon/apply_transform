@@ -7,23 +7,33 @@
 
 using namespace std::chrono_literals;
 
+// transform the point PA = [aPx aPy aPz] into PB with a translation of [ 1 2 3 ] and a rotation around x axis of theta degrees\n
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  if (argc != 5) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: get transform Px Py Pz theta");      
-      return 1;
+  if (argc < 5) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "insufficient parameters\nusage: aPx aPy aPz theta");      
+    return 1;
+  } else if (argc > 5){
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "too many parameters were passed\nusage: aPx aPy aPz theta");      
+    return 1;
   }
 
   std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("apply_transform_client");  
   rclcpp::Client<apply_transform::srv::GetTransform>::SharedPtr client =                
     node->create_client<apply_transform::srv::GetTransform>("frame_a2b_transform");          
-  auto request = std::make_shared<apply_transform::srv::GetTransform::Request>();       
-  request->point_a[0] = atoll(argv[1]);
-  request->point_a[1] = atoll(argv[2]);
-  request->point_a[2] = atoll(argv[3]);
-  request->theta = atoll(argv[4]);                                                             
+  auto request = std::make_shared<apply_transform::srv::GetTransform::Request>();
+
+  // receive the values as string and try to convert to a double    
+  try {
+    request->point_a[0] = std::stod(argv[1]);
+    request->point_a[1] = std::stod(argv[2]);
+    request->point_a[2] = std::stod(argv[3]);
+    request->theta = std::stod(argv[4]);
+  } catch (const std::invalid_argument& e) {
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error: Invalid argument. The string does not represent a valid number");
+  }                                                          
 
   while (!client->wait_for_service(1s)) {
     if (!rclcpp::ok()) {
@@ -43,8 +53,6 @@ int main(int argc, char **argv)
   }
 
   auto result = result_future.get();
-
-  // referencia: https://github.com/ros2/examples/blob/rolling/rclcpp/services/minimal_client/main.cpp
  
   if(result->sucess){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s\nResult:\nPoint B = [ %f %f %f]",
@@ -52,7 +60,6 @@ int main(int argc, char **argv)
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "The transformation failed\n%s", result->message.c_str());
   }
-  
 
   rclcpp::shutdown();
   return 0;
