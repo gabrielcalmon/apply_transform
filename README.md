@@ -2,13 +2,15 @@
 This repository was developed to accomplish the proposed challenge of to get a transformed point B obtained from the point PA = [aPx aPy aPz] after applying a translation of [ 1 2 3 ] and a rotation around x axis of theta degrees. Also, it was required to document the solution through a Use Case Diagrame and a Sequence Diagram.
 
 *Note: this package was developed and tested on ROS2 humble with Ubuntu 22.04 LTS*
+
 ## Mathematical definition
 A general transformation between two points can be defined as follow:
+
 $$^{B}P=^{B}_AT^{A}P$$
 
 Which is equivalent to:
 
-$$
+```math
 \begin{bmatrix}
 ^{B}P_x\\ 
 ^{B}P_y\\ 
@@ -22,14 +24,13 @@ $$
 0 & \sin(\theta) & \cos(\theta) & 3\\ 
 0 & 0 & 0 & 1
 \end{bmatrix}
-
 \begin{bmatrix}
 ^{A}P_x\\ 
 ^{A}P_y\\ 
 ^{A}P_z\\
 1
 \end{bmatrix}
-$$
+```
 
 And can be evaluated to:
 
