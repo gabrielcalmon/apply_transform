@@ -45,8 +45,7 @@ int main(int argc, char **argv)
   auto result_future = client->async_send_request(request);
   // Wait for the result.
   if (rclcpp::spin_until_future_complete(node, result_future) !=
-    rclcpp::FutureReturnCode::SUCCESS)
-  {  
+    rclcpp::FutureReturnCode::SUCCESS) {  
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service get_trasform");   
     return -1;
   }

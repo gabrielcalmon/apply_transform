@@ -8,8 +8,7 @@
 # define M_PI 3.14159265358979323846  // pi
 
 void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request> request,
-          std::shared_ptr<apply_transform::srv::GetTransform::Response>     response)
-{
+          std::shared_ptr<apply_transform::srv::GetTransform::Response>     response) {
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nPoint A = [%f %f %f]"  " Theta: %f",
               request->point.x, request->point.y, request->point.z, request->theta);
   
@@ -20,7 +19,7 @@ void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request
   double pz = request->point.z;
   
   // verify if angle is on acceptable range
-  if(request->theta < 0 || request->theta > 90){
+  if(request->theta < 0 || request->theta > 90) {
     response->sucess = false; 
     response->message = "The transformation failed due to invalid angle input\nTheta angle must be between 0 and 90 degrees";
     return;
