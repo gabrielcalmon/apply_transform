@@ -1,22 +1,23 @@
 #include "rclcpp/rclcpp.hpp"
+#include "geometry_msgs/msg/point.hpp" 
 #include "apply_transform/srv/get_transform.hpp"
 
 #include <memory>
 #include <cmath>
 
-# define M_PI 3.14159265358979323846  // pi approximation
+# define M_PI 3.14159265358979323846  // pi
 
 void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request> request,
           std::shared_ptr<apply_transform::srv::GetTransform::Response>     response)
 {
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nPoint A = [%f %f %f]"  " Theta: %f",
-              request->point_a[0], request->point_a[1], request->point_a[2], request->theta);
+              request->point.x, request->point.y, request->point.z, request->theta);
   
   double theta_rad = (request->theta)*M_PI/180; // convert from degrees to rad
 
-  double px = request->point_a[0];
-  double py = request->point_a[1];
-  double pz = request->point_a[2];
+  double px = request->point.x;
+  double py = request->point.y;
+  double pz = request->point.z;
   
   // verify if angle is on acceptable range
   if(request->theta < 0 || request->theta > 90){
@@ -28,9 +29,9 @@ void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request
   response->message = "The transformation was completed successfully";
 
   // calculates the transformed point
-  response->point_b[0] = px + 1;
-  response->point_b[1] = cos(theta_rad)*py - sin(theta_rad)*pz + 2;
-  response->point_b[2] = sin(theta_rad)*py + cos(theta_rad)*pz + 3;
+  response->point.x = px + 1;
+  response->point.y = cos(theta_rad)*py - sin(theta_rad)*pz + 2;
+  response->point.z = sin(theta_rad)*py + cos(theta_rad)*pz + 3;
    
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response");
 }

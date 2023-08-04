@@ -1,4 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
+#include "geometry_msgs/msg/point.hpp" 
 #include "apply_transform/srv/get_transform.hpp"                               
 
 #include <chrono>
@@ -27,9 +28,9 @@ int main(int argc, char **argv)
 
   // receive the values as string and try to convert to a double    
   try {
-    request->point_a[0] = std::stod(argv[1]);
-    request->point_a[1] = std::stod(argv[2]);
-    request->point_a[2] = std::stod(argv[3]);
+    request->point.x = std::stod(argv[1]);
+    request->point.y = std::stod(argv[2]);
+    request->point.z = std::stod(argv[3]);
     request->theta = std::stod(argv[4]);
   } catch (const std::invalid_argument& e) {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error: Invalid argument. The string does not represent a valid number");
@@ -57,7 +58,7 @@ int main(int argc, char **argv)
  
   if(result->sucess){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s\nResult:\nPoint B = [ %f %f %f]",
-              result->message.c_str(),result->point_b[0], result->point_b[1], result->point_b[2]);
+              result->message.c_str(),result->point.x, result->point.y, result->point.z);
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "The transformation failed\n%s", result->message.c_str());
   }
