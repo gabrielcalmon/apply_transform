@@ -7,12 +7,16 @@
 
 # define M_PI 3.14159265358979323846  // pi
 
+double degree2rad(double degree){
+  return (degree)*M_PI/180;
+}
+
 void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request> request,
           std::shared_ptr<apply_transform::srv::GetTransform::Response>     response) {
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nPoint A = [%f %f %f]"  " Theta: %f",
               request->point.x, request->point.y, request->point.z, request->theta);
   
-  double theta_rad = (request->theta)*M_PI/180; // convert from degrees to rad
+  double theta_rad = degree2rad(request->theta); // convert from degrees to rad
 
   double px = request->point.x;
   double py = request->point.y;
