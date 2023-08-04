@@ -1,5 +1,5 @@
 # apply_transform
-This repository was developed to accomplish the proposed challenge of to get a transformed point B obtained from the point PA = [aPx aPy aPz] after applying a translation of [ 1 2 3 ] and a rotation around x axis of theta degrees. Also, it was required to document the solution through a Use Case Diagrame and a Sequence Diagram.
+This repository was developed to accomplish the proposed challenge of to get a transformed point B obtained from the point PA = [aPx aPy aPz] after applying a translation of [ 1 2 3 ] and a rotation around x axis of theta degrees. Also, it was required to document the solution through a Use Case Diagram and a Sequence Diagram.
 
 *Note: this package was developed and tested on ROS2 humble with Ubuntu 22.04 LTS*
 
@@ -63,7 +63,7 @@ string message
 bool sucess
 ``` 
 ## Project documentation
-The sequence diagram of the solution is presented bellow. Through this diagram it is possible to see how the information flow between the user, the client and the server, as well as the logic execution sequence. Firstly, the user send a point and a rotation angle (around x-axis) to the client. This prepare the SRV message and send the information forward to the server. This one make the mathematical operations to calculate the desired point B, which is send back to the client as a response and, finally, achieve the user.
+The sequence diagram of the solution is presented bellow. Firstly, the user send a point and a rotation angle (around x-axis) to the client. This prepare the SRV message and send the information forward to the server. This one make the mathematical operations to calculate the desired point B, which is send back to the client as a response and, finally, achieve the user.
 
 <div align="center">
   <img src="resources/images/sequence-diagram.png" alt="sequence diagram">
