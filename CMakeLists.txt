@@ -14,19 +14,21 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 ament_export_dependencies(rosidl_default_runtime)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/GetTransform.srv"
+  DEPENDENCIES builtin_interfaces geometry_msgs
 )
 
 
 add_executable(get_transform_server src/get_transform_server.cpp)
-ament_target_dependencies(get_transform_server rclcpp)
+ament_target_dependencies(get_transform_server rclcpp geometry_msgs)
 
 add_executable(get_transform_client src/get_transform_client.cpp)
-ament_target_dependencies(get_transform_client rclcpp)
+ament_target_dependencies(get_transform_client rclcpp geometry_msgs)
 
 install(TARGETS
     get_transform_server
