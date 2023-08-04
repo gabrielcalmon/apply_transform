@@ -66,13 +66,13 @@ bool sucess
 The sequence diagram of the solution is presented bellow. Firstly, the user send a point and a rotation angle (around x-axis) to the client. This prepare the SRV message and send the information forward to the server. This one make the mathematical operations to calculate the desired point B, which is send back to the client as a response and, finally, achieve the user.
 
 <div align="center">
-  <img src="resources/images/sequence-diagram.png" alt="sequence diagram">
+  <img src="resources/images/sequence_diagram.png" alt="sequence diagram">
 </div>
 
 The use case is also presented. As it is a relatively simple project, the only existing case is to provide for the user the desired transform.
 
 <div align="center">
-  <img src="resources/images/use-case.png" alt="use case diagram">
+  <img src="resources/images/use_case.png" alt="use case diagram">
 </div>
 
 ## Setup
