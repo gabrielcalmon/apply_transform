@@ -55,10 +55,10 @@ While the outputs are:
 
 So, to implement this interface, the following srv structure, available on the srv/ folder, was created:
 ```bash
-float64[3] point_a
+geometry_msgs/Point point
 float64 theta
 ---
-float64[3] point_b
+geometry_msgs/Point point
 string message
 bool sucess
 ``` 
