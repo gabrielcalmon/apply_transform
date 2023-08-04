@@ -37,6 +37,8 @@ void transform(const std::shared_ptr<apply_transform::srv::GetTransform::Request
   response->point.z = sin(theta_rad)*py + cos(theta_rad)*pz + 3;
    
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response");
+
+  return;
 }
 
 int main(int argc, char **argv)
@@ -52,4 +54,5 @@ int main(int argc, char **argv)
 
   rclcpp::spin(node);
   rclcpp::shutdown();
+  return 0;
 }
