@@ -13,11 +13,8 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  if (argc < 5) {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "insufficient parameters\nusage: aPx aPy aPz theta");      
-    return 1;
-  } else if (argc > 5){
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "too many parameters were passed\nusage: aPx aPy aPz theta");      
+  if (argc != 5) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incorrect number of parameters usage: get transform Px Py Pz theta");      
     return 1;
   }
 
@@ -33,7 +30,7 @@ int main(int argc, char **argv)
     request->point.z = std::stod(argv[3]);
     request->theta = std::stod(argv[4]);
   } catch (const std::invalid_argument& e) {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error: Invalid argument. The string does not represent a valid number");
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error: Invalid argument. The parameters should only be numbers");
     return 2;
   }                                                          
 
