@@ -1,0 +1,8 @@
+@startuml
+left to right direction
+actor user
+rectangle apply_transform_server {
+  usecase "Provide a transformed point" as UC1
+}
+user --> UC1
+@enduml
