@@ -1,0 +1,26 @@
+@startuml
+!theme plain
+
+skinparam sequenceMessageAlign center
+
+actor User as User
+participant Client as Client
+database Server as Server
+
+User -> Client : Send point A\nand theta
+
+|||
+Client -> Client : Build SRV message
+|||
+
+Client -> Server : Send request
+
+|||
+Server -> Server : Calculate transformed point B
+|||
+
+Client <-- Server : Send point B as response
+User <-- Client : Send point B as response
+
+
+@enduml
